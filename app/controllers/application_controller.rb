@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+
   respond_to :json
   def render_resource(resource)
     if resource.errors.empty?
@@ -12,15 +13,12 @@ class ApplicationController < ActionController::API
 
   def validation_error(resource)
     render json: {
-      errors: [
-        {
-          status: '400',
-          title: 'Bad Request',
-          detail: resource.errors,
-          code: '400'
-        }
-      ]
-    }, status: :bad_request
+     
+     
+          errors: resource.errors,
+      
+  
+    }
   end
 
 
