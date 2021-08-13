@@ -28,17 +28,4 @@ class User < ApplicationRecord
     return communities.length > 0 && communities
   end
 
-  # def formatted_communities
-  #   case 
-  #   when self.communities_creator && self.communities_member
-  #     return {creator: self.communities_creator, member: self.communities_member}
-  #   when !self.communities_creator && self.communities_member
-  #     return {member: self.communities_member}
-  #   when self.communities_creator && !self.communities_member
-  #     return {creator: self.communities_creator}
-  #   else
-  #     return nil
-  #   end
-  # end
-
 end

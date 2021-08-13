@@ -1,4 +1,3 @@
-
 class Api::V1::CommunitiesController < ApplicationController
   respond_to :json
   before_action :authenticate_user! , only: %i[create update destroy]

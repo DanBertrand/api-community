@@ -1,6 +1,6 @@
 class Api::V1::SessionsController < Devise::SessionsController
   respond_to :json
-  # before_action :authenticate_user!
+
   private
 
   def respond_with(resource, _opts = {})
@@ -20,7 +20,6 @@ class Api::V1::SessionsController < Devise::SessionsController
             status: :unauthorized
     end
   end
-
 
   def respond_to_on_destroy
     head :no_content

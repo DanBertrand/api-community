@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-
   devise_for :users, 
   path: 'api/v1/',
   path_names: {
@@ -15,7 +14,6 @@ Rails.application.routes.draw do
     sessions: 'api/v1/sessions'
   }
 
-  
   namespace :api do
     namespace :v1 do
       get '/profile', to: "users#show"
@@ -25,8 +23,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  
-
- 
   
 end
