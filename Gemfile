@@ -50,3 +50,6 @@ gem 'active_model_serializers', '~> 0.10.10'
 gem 'jsonapi-rails', '~> 0.4.0'
 gem 'jsonapi-serializer', '~> 2.0.0'
 gem 'faker', '~> 1.6', '>= 1.6.6'
+
+gem 'geocoder', '~> 1.3', '>= 1.3.7'
+gem 'cloudinary', '~> 1.2', '>= 1.2.2'

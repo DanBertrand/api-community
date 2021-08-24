@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Devise::JWT::RevocationStrategies::Allowlist
@@ -10,6 +11,7 @@ class User < ApplicationRecord
          validates :password, presence: true
 
   has_many :members
+  has_one :avatar
   has_many :communities, through: :members
 
   def communities_creator

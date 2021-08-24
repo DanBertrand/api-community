@@ -14,12 +14,18 @@ Rails.application.routes.draw do
     sessions: 'api/v1/sessions'
   }
 
+
+  
   namespace :api do
     namespace :v1 do
       get '/profile', to: "users#show"
+      put '/profile', to: "users#update"
       resources :communities, only: [:index, :show, :create] 
       namespace :user do
         get '/communities', to: "communities#index"
+      end
+      namespace :user do
+        resources :avatars
       end
     end
   end
