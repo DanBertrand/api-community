@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
   private
 
-  def send_confirmation_email
-    UserMailer.confirmation_email(self).deliver_now
-  end
+  # def send_confirmation_email
+  #   UserMailer.confirmation_email(self).deliver_now
+  # end
 end
