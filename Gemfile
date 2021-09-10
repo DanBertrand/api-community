@@ -23,33 +23,43 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   gem 'listen', '~> 3.3'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'letter_opener', '~> 1.7'
+
+  gem 'pry', '~> 0.13.1'
+  gem 'dotenv', '~> 2.1', '>= 2.1.1'
+  gem 'dotenv-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-
+# Authentication
 gem 'devise', '~> 4.8'
 gem 'devise-jwt', '~> 0.8.1'
-gem 'rack-cors', '~> 1.1', '>= 1.1.1'
-gem 'pry', '~> 0.13.1'
-gem 'dotenv', '~> 2.1', '>= 2.1.1'
+
+# Database formated reader
 gem 'table_print'
-gem 'active_model_serializers', '~> 0.10.10'
-gem 'jsonapi-rails', '~> 0.4.0'
+
+# Serailizer
 gem 'jsonapi-serializer', '~> 2.0.0'
+
+# Seed
 gem 'faker', '~> 1.6', '>= 1.6.6'
 
-gem 'geocoder', '~> 1.3', '>= 1.3.7'
+# Picture storage
 gem 'cloudinary', '~> 1.2', '>= 1.2.2'
+
+# Mailer
+gem 'mailjet', '~> 1.1'

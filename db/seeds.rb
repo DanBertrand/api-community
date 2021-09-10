@@ -41,11 +41,11 @@ tp User.all
 #Communities
 Community.create(
   name: "Good Vibes",
-  address: 'Seestrasse 114, 13353 Berlin',
+ 
 )
 Community.create(
   name: "NomadLand",
-  address: '10 D114A, 38350 Oris-en-Rattier, France',
+
 )
 puts '-------------------- Community table --------------------'
 tp Community.all

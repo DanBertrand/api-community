@@ -6,34 +6,50 @@ class Api::V1::User::AvatarsController < ApplicationController
   def create
     begin
       image = Cloudinary::Uploader.upload(params[:image])
-      if current_user.avatar 
-        current_user.avatar.total_destroy
-      end
-      avatar = Avatar.create(user_id: current_user.id, url: image["url"], public_id: image["public_id"])
+      current_user.avatar.total_destroy if current_user.avatar
+      avatar =
+        Avatar.create(
+          user_id: current_user.id,
+          url: image['url'],
+          public_id: image['public_id'],
+        )
+      current_user.update(profile_picture: image['url'])
     rescue => errors
-      render json:{
-        error: "Unable to save the profile picture. #{avatar.errors.full_messages.to_sentence}"
-      }, status: :bad_request
-    else 
-      render json:{
-        data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
-      },  status: :ok
+      render json: {
+               error:
+                 "Unable to save the profile picture. #{avatar.errors.full_messages.to_sentence}",
+             },
+             status: :bad_request
+    else
+      render json: {
+               data:
+                 UserSerializer.new(current_user).serializable_hash[:data][
+                   :attributes
+                 ],
+             },
+             status: :ok
     end
   end
 
   def destroy
-    if  @avatar.total_destroy
-      render json:{
-        data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
-      }
+    if @avatar.total_destroy
+      render json: {
+               data:
+                 UserSerializer.new(current_user).serializable_hash[:data][
+                   :attributes
+                 ],
+             }
     else
       render json: {
-        error: "Unable to delete the avatar #{@avatar.errors.full_messages.to_sentence}"
-      }, status: :bad_request
+               error:
+                 "Unable to delete the avatar #{@avatar.errors.full_messages.to_sentence}",
+             },
+             status: :bad_request
     end
   end
 
   private
+
   def set_avatar
     @avatar = Avatar.find(params[:id])
   end

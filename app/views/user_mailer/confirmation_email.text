@@ -1,0 +1,2 @@
+Couou c'est moi dany 
+Hello ! <%= @user.first_name %> <%= @user.last_name %>!

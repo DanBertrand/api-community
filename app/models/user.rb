@@ -1,33 +1,38 @@
 class User < ApplicationRecord
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Devise::JWT::RevocationStrategies::Allowlist
-  devise :database_authenticatable, :registerable,
-  :jwt_authenticatable, jwt_revocation_strategy: self
 
-         validates :email, presence: true
-         validates_uniqueness_of :email
-         validates :password, presence: true
+  # Include default devise modules. Others available are: :omniauthable,:lockable, :timeoutable, :trackable,
+
+  devise :database_authenticatable,
+         :registerable,
+         :confirmable,
+         :jwt_authenticatable,
+         jwt_revocation_strategy: self
+
+  # after_create :send_confirmation_email
+
+  validates :email, presence: true
+  validates_uniqueness_of :email
+  validates :password, presence: true
 
   has_many :members
   has_one :avatar
   has_many :communities, through: :members
+  has_one :address, as: :addressable
 
-  def communities_creator
+  def communities_with_member_info
     communities = []
-    self.members.where(role:"creator").each do |creator|
-      communities << Community.find(creator.community_id)
+    self.members.each do |member|
+      community = Community.find(member.community_id).serializable_hash
+      community[:user_infos] = { member_id: member.id, role: member.role }
+      communities << community
     end
-    return communities.length > 0 && communities 
+    return communities
   end
 
-  def communities_member
-    communities = []
-    self.members.where(role:"basic").each do |basic_member|
-      communities << Community.find(basic_member.community_id)
-    end
-    return communities.length > 0 && communities
-  end
+  private
 
+  def send_confirmation_email
+    UserMailer.confirmation_email(self).deliver_now
+  end
 end
