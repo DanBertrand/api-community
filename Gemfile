@@ -62,4 +62,4 @@ gem 'faker', '~> 1.6', '>= 1.6.6'
 gem 'cloudinary', '~> 1.2', '>= 1.2.2'
 
 # Mailer
-gem 'mailjet', '~> 1.1'
+gem 'mailjet', git: 'https://github.com/mailjet/mailjet-gem.git'
