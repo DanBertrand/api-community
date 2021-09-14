@@ -2,14 +2,14 @@ class Api::V1::SessionsController < Devise::SessionsController
   respond_to :json
 
   def create
-    user = User.find_by(email: params[:user][:email])
-    if !user.confirmed?
+    user = params[:user] ? User.find_by(email: params[:user][:email]) : nil
+    if user && !user.confirmed?
       render json: {
                status: 401,
                message: 'Please confirm your email in order to login',
              },
              status: :unauthorized
-    elsif user.confirmed?
+    elsif !user || user.confirmed?
       self.resource = warden.authenticate!(auth_options)
       sign_in(resource_name, resource)
       yield resource if block_given?
