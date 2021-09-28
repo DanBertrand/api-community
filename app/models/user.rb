@@ -16,6 +16,10 @@ class User < ApplicationRecord
   validates :password, presence: true
 
   has_many :members
+  has_many :applies, as: :applyable
+  has_many :jobs, through: :applies
+  has_many :workshops, through: :applies
+
   has_one :avatar
   has_many :communities, through: :members
   has_one :address, as: :addressable
@@ -28,6 +32,10 @@ class User < ApplicationRecord
       communities << community
     end
     return communities
+  end
+
+  def apply(item)
+    return item.users << self ? true : item.errors.messages
   end
 
   private

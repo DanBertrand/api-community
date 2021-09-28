@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_24_172032) do
+ActiveRecord::Schema.define(version: 2021_09_21_153816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(version: 2021_08_24_172032) do
     t.index ["user_id"], name: "index_allowlisted_jwts_on_user_id"
   end
 
+  create_table "applies", force: :cascade do |t|
+    t.boolean "validated", default: false
+    t.bigint "user_id", null: false
+    t.bigint "job_id"
+    t.bigint "workshop_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_id"], name: "index_applies_on_job_id"
+    t.index ["user_id"], name: "index_applies_on_user_id"
+    t.index ["workshop_id"], name: "index_applies_on_workshop_id"
+  end
+
   create_table "avatars", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "url", null: false
@@ -55,6 +67,17 @@ ActiveRecord::Schema.define(version: 2021_08_24_172032) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "duration_in_days"
+    t.integer "nbr_of_person_required"
+    t.bigint "community_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["community_id"], name: "index_jobs_on_community_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -87,8 +110,20 @@ ActiveRecord::Schema.define(version: 2021_08_24_172032) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workshops", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "community_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["community_id"], name: "index_workshops_on_community_id"
+  end
+
   add_foreign_key "allowlisted_jwts", "users", on_delete: :cascade
+  add_foreign_key "applies", "users"
   add_foreign_key "avatars", "users"
+  add_foreign_key "jobs", "communities"
   add_foreign_key "members", "communities"
   add_foreign_key "members", "users"
+  add_foreign_key "workshops", "communities"
 end

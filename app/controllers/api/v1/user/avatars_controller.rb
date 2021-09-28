@@ -13,7 +13,6 @@ class Api::V1::User::AvatarsController < ApplicationController
           url: image['url'],
           public_id: image['public_id'],
         )
-      current_user.update(profile_picture: image['url'])
     rescue => errors
       render json: {
                error:
