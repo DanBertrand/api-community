@@ -22,4 +22,12 @@ class CommunitySerializer
   attributes :members do |object|
     object.basic_members
   end
+
+  attributes :has_workshops do |object|
+    object.workshops.length > 0
+  end
+
+  attributes :has_jobs do |object|
+    object.jobs.length > 0
+  end
 end

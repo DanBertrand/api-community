@@ -27,6 +27,10 @@ Rails
         put '/profile', to: 'users#update'
         resources :communities, only: %i[index show create] do
           resources :members, only: %i[create destroy]
+          resources :workshops, :jobs do
+            resources :applies
+          end
+          # patch '/jobs/:id/apply', to: 'jobs#apply'
         end
         namespace :user do
           get '/communities', to: 'communities#index'

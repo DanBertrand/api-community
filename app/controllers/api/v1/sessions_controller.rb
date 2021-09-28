@@ -3,10 +3,14 @@ class Api::V1::SessionsController < Devise::SessionsController
 
   def create
     user = params[:user] ? User.find_by(email: params[:user][:email]) : nil
+
+    # binding.pry
     if user && !user.confirmed?
       render json: {
                status: 401,
                message: 'Please confirm your email in order to login',
+               data:
+                 UserSerializer.new(user).serializable_hash[:data][:attributes],
              },
              status: :unauthorized
     elsif !user || user.confirmed?
@@ -31,12 +35,12 @@ class Api::V1::SessionsController < Devise::SessionsController
       render json: {
                status: {
                  code: 200,
-                 message: 'Logged in successfully.',
                },
                data:
                  UserSerializer.new(resource).serializable_hash[:data][
                    :attributes
                  ],
+               message: 'Logged in successfully.',
              }
     else
       render json: {
