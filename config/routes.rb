@@ -10,7 +10,7 @@ Rails
                  sign_in: 'api/v1/login',
                  sign_out: 'api/v1/logout',
                  registration: 'api/v1/signup',
-                 confirmation: 'confirmation/confirmation',
+                 confirmation: 'confirmation',
                },
                controllers: {
                  registrations: 'api/v1/registrations',
