@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_09_21_153816) do
 
   create_table "applies", force: :cascade do |t|
     t.boolean "validated", default: false
+    t.boolean "reviewed", default: false
     t.bigint "user_id", null: false
     t.bigint "job_id"
     t.bigint "workshop_id"

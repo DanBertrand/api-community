@@ -54,14 +54,17 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by(confirmation_token: params[:token])
     if !user.confirmed?
       user.resend_confirmation_instructions
-      render json: {},
+      render json: {
+               message: 'Confirmation instruction resent',
+             },
              status: :ok,
-             code: '200',
-             message: 'Confirmation instruction resent'
+             code: '200'
     else
-      render json: {},
-             status: :unprocessable_entity,
-             message: 'Email already confirmed'
+      render json: {
+               message: 'Email already confirmed',
+             },
+             status: :ok,
+             code: '200'
     end
   end
 
