@@ -43,7 +43,6 @@ class Api::V1::CommunitiesController < ApplicationController
   end
 
   def create
-    binding.pry
     @community = Community.create(community_params)
     @community.add_address(params)
     @community.add_creator(current_user)
