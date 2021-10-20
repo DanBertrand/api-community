@@ -8,7 +8,7 @@ class Api::V1::SessionsController < Devise::SessionsController
     if user && !user.confirmed?
       render json: {
                status: 401,
-               message: 'Please confirm your email in order to login',
+               message: I18n.t('login_success'),
                data:
                  UserSerializer.new(user).serializable_hash[:data][:attributes],
              },
@@ -40,19 +40,20 @@ class Api::V1::SessionsController < Devise::SessionsController
                  UserSerializer.new(resource).serializable_hash[:data][
                    :attributes
                  ],
-               message: 'Logged in successfully.',
+               message: I18n.t('login_success'),
              }
     else
       render json: {
                status: 401,
                message:
-                 "Couldn't find an active session. #{resource.errors.full_messages.to_sentence}",
+                 I18n.t('login_fail') +
+                   " #{resource.errors.full_messages.to_sentence}",
              },
              status: :unauthorized
     end
   end
 
   def respond_to_on_destroy
-    head :no_content
+    render json: { status: 200, message: I18n.t('logout') }, status: :ok
   end
 end

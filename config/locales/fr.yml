@@ -1,0 +1,27 @@
+fr:
+  hello: 'Bonjour le monde'
+  logout: 'Deconnecté'
+  login_success: 'Connecté'
+  login_fail: "Email ou mot de passe incorrect"
+  signup_success: 'Votre compte a été créé avec succès'
+  signup_fail: "Votre compte n'a pas pu être créé"
+  account_update_success: 'Votre compte mis à jour avec succès'
+  account_update_fail: "Votre compte n'a pas pu être mis à jour"
+  profile_update_success: 'Votre profil à été mis à jour'
+  profile_update_fail: "Votre profil n'a pas pu être mis à jour"
+  wrong_password: 'Mauvais mot de passe'
+  email_confirmation_request: 'Veuillez confirmer votre email pour pouvoir vous connecter'
+  email_confirmation_sent: "Une confirmation d'email vous à été envoyé"
+  email_confirmation_sent: 'Votre email à déjà été confirmé'
+  workshop_create_success: 'Atelier créé avec succès'
+  workshop_delete_success: 'Atelier supprimé avec succès'
+  workshop_delete_fail: "L'atelier n'a pas pu être supprimé"
+  job_create_success: 'Travail créé avec succès'
+  job_create_fail: "Le travail n'a pas pu être créé"
+  job_delete_success: 'Travail supprimé avec succès'
+  job_delete_fail: "Le travail n'a pas pu être supprimé"
+  community_create_success: 'Communauté créee avec succès'
+  community_create_fail: "La communauté n'a pas pu être créee"
+  community_show_fail: "Impossible d'obtenir les information de cette communauté"
+  community_index_fail: "Impossible d'obtenir la liste de communautés"
+

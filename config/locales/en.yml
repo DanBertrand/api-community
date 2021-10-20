@@ -30,4 +30,32 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+  logout: 'Logged out successfully'
+  login_success: 'Logged in successfully'
+  login_fail: "Email and/or password doesn't match"
+  signup_success: 'Signed up successfully'
+  signup_fail: "Account couldn't be created successfully."
+  account_update_success: 'Account updated successfully.'
+  account_update_fail: "Couldn't update the account's informations."
+  profile_update_success: 'Profile updated successfully'
+  profile_update_fail: "Unable to update the profile's informations."
+  wrong_password: 'Wrong password'
+  email_confirmation_request: 'Please confirm your email in order to login'
+  email_confirmation_sent: 'Confirmation instruction resent'
+  email_confirmation_sent: 'Email already confirmed'
+  workshop_create_success: 'Workshop created successfully'
+  workshop_delete_success: 'Workshop deleted successfully'
+  workshop_delete_fail: "Couldn't delete the workshop"
+  job_create_success: 'Job created successfully'
+  job_create_fail: "Job couldn't be created."
+  job_delete_success: 'Job deleted successfully'
+  job_delete_fail: "Couldn't delete the job"
+  community_create_success: 'Community successfully created'
+  community_create_fail: "Unable to save the community."
+  community_show_fail: "Unable to get the community's information."
+  community_index_fail: "Unable to get the list of communities."
+
+
+
+#  I18n.t('job_create_success')

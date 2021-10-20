@@ -7,8 +7,7 @@ class Api::V1::CommunitiesController < ApplicationController
       @communities = Community.all
     rescue => errors
       render json: {
-               error:
-                 "Unable to get the list of communities. #{errors.message}}",
+               error: I18n.t('community_index_fail') + " #{errors.message}}",
              },
              status: :not_found
     else
@@ -27,8 +26,7 @@ class Api::V1::CommunitiesController < ApplicationController
       @community
     rescue => errors
       render json: {
-               error:
-                 "Unable to get the community's information. #{errors.message}",
+               error: I18n.t('community_show_fail') + " #{errors.message}",
              },
              status: :not_found
     else
@@ -52,13 +50,14 @@ class Api::V1::CommunitiesController < ApplicationController
                  CommunitySerializer.new(@community).serializable_hash[:data][
                    :attributes
                  ],
-               message: 'Community successfully created',
+               message: I18n.t('community_create_success'),
              },
              status: :ok
     else
       render json: {
                error:
-                 "Unable to save the community. #{@member.errors.full_messages.to_sentence} #{@community.errors.full_messages.to_sentence}",
+                 I18n.t(' community_create_fail') +
+                   " #{@member.errors.full_messages.to_sentence} #{@community.errors.full_messages.to_sentence}",
              },
              status: :bad_request
     end

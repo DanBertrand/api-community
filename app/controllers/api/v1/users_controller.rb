@@ -20,11 +20,12 @@ class Api::V1::UsersController < ApplicationController
              },
              status: :ok,
              code: '200',
-             message: 'Account updated succesfully.'
+             message: I18n.t(' account_update_success')
     else
       render json: {
                error:
-                 "Couldn't update the account's informations. #{current_user.errors.full_messages.to_sentence}",
+                 I18n.t('  account_update_fail') +
+                   " #{current_user.errors.full_messages.to_sentence}",
              },
              status: :unprocessable_entity
     end
@@ -55,13 +56,13 @@ class Api::V1::UsersController < ApplicationController
     if !user.confirmed?
       user.resend_confirmation_instructions
       render json: {
-               message: 'Confirmation instruction resent',
+               message: I18n.t('email_confirmation_sent'),
              },
              status: :ok,
              code: '200'
     else
       render json: {
-               message: 'Email already confirmed',
+               message: I18n.t('email_confirmation_sent'),
              },
              status: :ok,
              code: '200'

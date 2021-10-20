@@ -63,3 +63,6 @@ gem 'cloudinary', '~> 1.2', '>= 1.2.2'
 
 # Mailer
 gem 'mailjet', git: 'https://github.com/mailjet/mailjet-gem.git'
+
+#  Internationalization
+gem 'rails-i18n'

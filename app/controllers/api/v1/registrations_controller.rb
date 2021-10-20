@@ -6,7 +6,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
       render json: {
                status: {
                  code: 200,
-                 message: 'Signed up sucessfully.',
+                 message: I18n.t('signup_success'),
                },
                data:
                  UserSerializer.new(resource).serializable_hash[:data][
@@ -15,8 +15,9 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
              }
     else
       render json: {
-               error:
-                 "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}",
+               message:
+                 I18n.t('signup_fail') +
+                   "#{resource.errors.full_messages.to_sentence}",
              },
              status: :unprocessable_entity
     end
@@ -50,7 +51,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
         )
         render json: {
                  status: {
-                   message: 'Profile Updated Successfully',
+                   message: I18n.t('profile_update_success'),
                  },
                  data:
                    UserSerializer.new(current_user).serializable_hash[:data][
@@ -59,12 +60,11 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
                },
                status: :ok
       else
-        render json: { error: 'Wrong Password' }, status: :bad_request
+        render json: { error: I18n.t('wrong_password') }, status: :bad_request
       end
     rescue => errors
       render json: {
-               error:
-                 "Unable to update the profile's informations. #{errors.message}",
+               error: I18n.t('profile_update_fail') + " #{errors.message}",
              },
              status: :unprocessable_entity
     end

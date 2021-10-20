@@ -23,7 +23,7 @@ class Api::V1::JobsController < ApplicationController
     @job.community = Community.find(params[:community_id])
     if @job.save
       render json: {
-               message: 'Job created successfully',
+               message: I18n.t('job_create_success'),
                data:
                  JobSerializer.new(@job).serializable_hash[:data][:attributes],
              },
@@ -31,7 +31,8 @@ class Api::V1::JobsController < ApplicationController
     else
       render json: {
                error:
-                 "Job couldn't be created. #{@job.errors.full_messages.to_sentence}",
+                 I18n.t('job_create_fail') +
+                   " #{@job.errors.full_messages.to_sentence}",
              },
              status: :unprocessable_entity
     end
@@ -58,9 +59,9 @@ class Api::V1::JobsController < ApplicationController
   # DELETE /jobs/1
   def destroy
     if @job.destroy
-      render json: { message: 'Job deleted succesfully' }, status: :ok
+      render json: { message: I18n.t('job_delete_success') }, status: :ok
     else
-      render json: { message: "Couldn't delete the job" }, status: 400
+      render json: { message: I18n.t('job_delete_fail') }, status: 400
     end
   end
 

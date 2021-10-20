@@ -22,7 +22,7 @@ class Api::V1::WorkshopsController < ApplicationController
     @workshop.community = Community.find(params[:community_id])
     if @workshop.save
       render json: {
-               message: 'Workshop created successfully',
+               message: I18n.t('workshop_create_success'),
                data:
                  WorkshopSerializer.new(@workshop).serializable_hash[:data][
                    :attributes
@@ -46,9 +46,9 @@ class Api::V1::WorkshopsController < ApplicationController
   # DELETE /workshops/1
   def destroy
     if @workshop.destroy
-      render json: { message: 'Workshop deleted succesfully' }, status: :ok
+      render json: { message: I18n.t('workshop_delete_success') }, status: :ok
     else
-      render json: { message: "Couldn't delete the workshop" }, status: 400
+      render json: { message: I18n.t('workshop_delete_fail') }, status: 400
     end
   end
 
