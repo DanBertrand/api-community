@@ -8,7 +8,7 @@ class Api::V1::SessionsController < Devise::SessionsController
     if user && !user.confirmed?
       render json: {
                status: 401,
-               message: I18n.t('login_success'),
+               message: I18n.t('email_confirmation_request'),
                data:
                  UserSerializer.new(user).serializable_hash[:data][:attributes],
              },
