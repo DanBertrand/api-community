@@ -30,7 +30,10 @@ class Api::V1::WorkshopsController < ApplicationController
              },
              status: :ok
     else
-      render json: @workshop.errors, status: :unprocessable_entity
+      render json: {
+               error: @workshop.errors.full_messages.to_sentence,
+             },
+             status: :unprocessable_entity
     end
   end
 
@@ -39,7 +42,10 @@ class Api::V1::WorkshopsController < ApplicationController
     if @workshop.update(workshop_params)
       render json: @workshop
     else
-      render json: @workshop.errors, status: :unprocessable_entity
+      render json: {
+               error: @workshop.errors.full_messages.to_sentence,
+             },
+             status: :unprocessable_entity
     end
   end
 
@@ -48,7 +54,12 @@ class Api::V1::WorkshopsController < ApplicationController
     if @workshop.destroy
       render json: { message: I18n.t('workshop_delete_success') }, status: :ok
     else
-      render json: { message: I18n.t('workshop_delete_fail') }, status: 400
+      render json: {
+               error:
+                 I18n.t('workshop_delete_fail') +
+                   @workshop.errors.full_messages.to_sentence,
+             },
+             status: 400
     end
   end
 

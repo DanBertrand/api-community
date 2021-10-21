@@ -43,7 +43,10 @@ class Api::V1::JobsController < ApplicationController
     if @job.update(job_params)
       render json: @job
     else
-      render json: @job.errors, status: :unprocessable_entity
+      render json: {
+               error: @job.errors.full_messages.to_sentence,
+             },
+             status: :unprocessable_entity
     end
   end
 
@@ -52,7 +55,10 @@ class Api::V1::JobsController < ApplicationController
     if current_user.apply(@job)
       render json: @job
     else
-      render json: current_user.apply(@job), status: :unprocessable_entity
+      render json: {
+               error: current_user.apply(@job),
+             },
+             status: :unprocessable_entity
     end
   end
 
@@ -61,7 +67,7 @@ class Api::V1::JobsController < ApplicationController
     if @job.destroy
       render json: { message: I18n.t('job_delete_success') }, status: :ok
     else
-      render json: { message: I18n.t('job_delete_fail') }, status: 400
+      render json: { error: I18n.t('job_delete_fail') }, status: 400
     end
   end
 

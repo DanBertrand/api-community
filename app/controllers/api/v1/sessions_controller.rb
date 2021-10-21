@@ -14,6 +14,7 @@ class Api::V1::SessionsController < Devise::SessionsController
              },
              status: :unauthorized
     elsif !user || user.confirmed?
+      # binding.pry
       self.resource = warden.authenticate!(auth_options)
       sign_in(resource_name, resource)
       yield resource if block_given?
@@ -29,6 +30,25 @@ class Api::V1::SessionsController < Devise::SessionsController
   end
 
   private
+
+  private
+
+  def set_locale
+    I18n.locale = extract_locale || I18n.default_locale
+  end
+
+  def extract_locale
+    parsed_locale = params[:locale]
+    if I18n.available_locales.map(&:to_s).include?(parsed_locale)
+      parsed_locale
+    else
+      nil
+    end
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
 
   def respond_with(resource, _opts = {})
     if current_user

@@ -27,8 +27,8 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     render json: {
              status: {
                code: 200,
-               message: 'Editing profile',
              },
+             message: 'Editing profile',
              data:
                UserSerializer.new(resource).serializable_hash[:data][
                  :attributes
@@ -50,9 +50,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
           custom_params.except(:new_password, :new_password_confirmation),
         )
         render json: {
-                 status: {
-                   message: I18n.t('profile_update_success'),
-                 },
+                 message: I18n.t('profile_update_success'),
                  data:
                    UserSerializer.new(current_user).serializable_hash[:data][
                      :attributes
@@ -64,7 +62,9 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
       end
     rescue => errors
       render json: {
-               error: I18n.t('profile_update_fail') + " #{errors.message}",
+               error:
+                 I18n.t('profile_update_fail') +
+                   " #{errors.full_messages.to_sentence}",
              },
              status: :unprocessable_entity
     end
