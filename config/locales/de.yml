@@ -1,0 +1,26 @@
+de:
+  hello: 'Hello world'
+  logout: 'Erfolgreich ausgeloggt'
+  login_success: 'Erfolgreich eingeloggt'
+  login_fail: "E-Mail und/oder Kennwort stimmen nicht überein"
+  signup_success: 'Erfolgreich angemeldet'
+  signup_fail: "Konto konnte nicht erfolgreich erstellt werden."
+  account_update_success: 'Konto konnte nicht erfolgreich erstellt werden.'
+  account_update_fail: "Konnte die Kontoinformationen nicht aktualisieren."
+  profile_update_success: 'Profil erfolgreich aktualisiert'
+  profile_update_fail: "Profil erfolgreich aktualisiert."
+  wrong_password: 'Falsches Kennwort'
+  email_confirmation_request: 'Bitte bestätigen Sie Ihre E-Mail, um sich anzumelden'
+  email_confirmation_sent: 'Bestätigungsanweisung erneut gesendet'
+  email_confirmation_sent: 'Email already confirmed'
+  workshop_create_success: 'E-Mail bereits bestätigt'
+  workshop_delete_success: 'Workshop erfolgreich gelöscht'
+  workshop_delete_fail: "Der Workshop konnte nicht gelöscht werden"
+  job_create_success: 'Job erfolgreich erstellt'
+  job_create_fail: "Job konnte nicht geschaffen werden."
+  job_delete_success: 'Job erfolgreich gelöscht'
+  job_delete_fail: "Der Auftrag konnte nicht gelöscht werden"
+  community_create_success: 'Gemeinschaft erfolgreich gegründet'
+  community_create_fail: "Unfähig, die Gemeinschaft zu retten."
+  community_show_fail: "Unmöglich, die Informationen der Gemeinschaft zu erhalten."
+  community_index_fail: "Die Liste der Gemeinden kann nicht abgerufen werden."  

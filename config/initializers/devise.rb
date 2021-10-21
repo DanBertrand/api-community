@@ -143,7 +143,7 @@ Devise.setup do |config|
   # without confirming their account.
   # Default is 0.days, meaning the user cannot access the website without
   # confirming their account.
-  config.allow_unconfirmed_access_for = 0.day
+  config.allow_unconfirmed_access_for = 1.day
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -314,7 +314,7 @@ Devise.setup do |config|
 
     # jwt.secret =
     #   '689ed92c22d7654b77cd735a755bc5bf56b0153b3b4321b40057dde83432ccae715e53b74848c2736b3b41ec4caa2e413c4cd8ea135ed9c2b819ca4e9b0728c6'
-    jwt.dispatch_requests = [['POST', %r{^/login$}]]
+    jwt.dispatch_requests = [['POST', %r{api/v1/login}]]
     jwt.revocation_requests = [['DELETE', %r{^/logout$}]]
     jwt.expiration_time = 4.day.to_i
   end

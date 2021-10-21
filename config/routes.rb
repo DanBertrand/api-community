@@ -3,7 +3,6 @@ Rails
   .routes
   .draw do
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
     scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
       devise_for :users,
                  path: '',
@@ -18,7 +17,6 @@ Rails
                    sessions: 'api/v1/sessions',
                    confirmations: 'api/v1/confirmations',
                  }
-
       namespace :api do
         namespace :v1 do
           get '/profile', to: 'users#show'
