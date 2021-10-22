@@ -1,6 +1,5 @@
 class Api::V1::JobsController < ApplicationController
   before_action :set_job, only: %i[show update apply destroy]
-  before_action :authenticate_user!
 
   # GET /jobs
   def index

@@ -1,5 +1,6 @@
 class Api::V1::RegistrationsController < Devise::RegistrationsController
   respond_to :json
+  before_action :set_locale
 
   def respond_with(resource, _opts = {})
     if resource.persisted?

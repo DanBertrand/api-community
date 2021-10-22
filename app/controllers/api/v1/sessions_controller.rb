@@ -1,6 +1,8 @@
 class Api::V1::SessionsController < Devise::SessionsController
   respond_to :json
 
+  before_action :set_locale
+
   def create
     user = params[:user] ? User.find_by(email: params[:user][:email]) : nil
 
@@ -28,8 +30,6 @@ class Api::V1::SessionsController < Devise::SessionsController
     yield resource if block_given?
     respond_with(resource, serialize_options(resource))
   end
-
-  private
 
   private
 
@@ -72,8 +72,8 @@ class Api::V1::SessionsController < Devise::SessionsController
              status: :unauthorized
     end
   end
-
   def respond_to_on_destroy
-    render json: { status: 200, message: I18n.t('logout') }, status: :ok
+    I18n.locale = extract_locale
+    render json: { message: I18n.t('logout') }, status: 200
   end
 end

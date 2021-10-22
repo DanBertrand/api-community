@@ -14,8 +14,6 @@ class ApplicationController < ActionController::API
     render json: { errors: resource.errors }
   end
 
-  private
-
   def set_locale
     I18n.locale = extract_locale || I18n.default_locale
   end

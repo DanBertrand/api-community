@@ -32,7 +32,14 @@ class Api::V1::CommunitiesController < ApplicationController
     else
       render json: {
                data:
-                 CommunitySerializer.new(@community).serializable_hash[:data][
+                 CommunitySerializer.new(
+                   @community,
+                   params: {
+                     current_user: current_user,
+                   },
+                 ).serializable_hash[
+                   :data
+                 ][
                    :attributes
                  ],
              },
